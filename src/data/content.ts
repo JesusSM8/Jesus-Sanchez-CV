@@ -243,6 +243,7 @@ export const uiPrototypes: Prototype[] = [
   {
     t: "Music App",
     s: "Streaming, built for the dark",
+    src: "/images/cover-ui-design.png",
     b: [
       "Clean, low-light-friendly layout",
       "Persistent player bar — play, skip, volume",
