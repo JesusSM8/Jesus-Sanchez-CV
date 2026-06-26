@@ -1,257 +1,297 @@
-export type Project = {
+export type Signature = "planet" | "process";
+
+export interface GalleryItem {
+  src: string;
+  caption: string;
+}
+
+export interface Outcome {
+  t: string;
+  d: string;
+}
+
+export interface Project {
+  num: string;
   id: string;
   title: string;
   company: string;
   period: string;
+  role: string;
   tags: string[];
   description: string;
-  highlight?: boolean;
-  detail?: {
-    role: string;
-    intro: string;
-    responsibilities: string[];
-    highlights?: string[];
-    screens?: string[];
-  };
-};
+  hue: number;
+  /** special hand-crafted block rendered before the generic content */
+  signature?: Signature;
+  hero?: string;
+  did: string[];
+  gallery: GalleryItem[];
+  outcomes?: Outcome[];
+  /** small rotated sticky-note strip at the end (personality accent) */
+  notes?: string[];
+  copyright?: string;
+}
 
 export const projects: Project[] = [
   {
+    num: "01",
     id: "angry-birds",
     title: "Angry Birds 2",
     company: "Rovio",
     period: "2024 — Now",
-    tags: ["Product Strategy", "Design System", "A/B Testing", "Mobile"],
+    role: "UX/UI Designer & Artist",
+    tags: ["Product Strategy", "Design System", "A/B Testing", "Unity"],
     description:
-      "Designing new features for one of the most-played mobile games on the planet. Full ownership from concept to ship — strategy, system design, playtests, cross-team collaboration.",
-    highlight: true,
-    detail: {
-      role: "UX/UI Designer",
-      intro:
-        "Angry Birds 2 has hundreds of millions of downloads. Working here means every decision has real scale — a poorly tested UI change can affect millions of players overnight. I design new features end-to-end: from early strategy sessions to Figma prototypes, playtests, A/B tests, and final implementation.",
-      responsibilities: [
-        "Product strategy and new feature design — from 0 to shipped",
-        "Data gathering and interpretation to drive design decisions",
-        "Figma UI design, design system ownership, and prototyping",
-        "A/B tests, playtests, and survey-based validation",
-        "Cross-functional collaboration between design, engineering, and product",
-        "UI implementation support",
-      ],
-      highlights: [
-        "Full ownership of multiple shipped features across core gameplay and meta loops",
-        "Maintained and evolved the design system across a large, active codebase",
-        "Collaborated with international teams across timezones",
-      ],
-    },
+      "Two years on the Angry Birds 2 early-game team, leading redesigns of the biggest features — from KPIs to shipped UI, and the Unity implementation in between.",
+    hue: 30,
+    hero: "/images/ab2-keyart.jpg",
+    did: [
+      "Sit with Game Design to turn KPIs and goals into solutions.",
+      "Analyze data with Beacon, Rovio's internal tool.",
+      "Run UX research and validate with PlayTestCloud, surveys and internal playtests.",
+      "Design, prototype and implement features straight into Unity.",
+      "Build and own a Figma component design system covering every screen.",
+      "Lead redesigns of the Homescreen, Flock Power HUB and Shops — improving early retention.",
+    ],
+    gallery: [
+      { src: "/images/ab2-home.png", caption: "Homescreen redesign" },
+      { src: "/images/ab2-pigsfight.png", caption: "Pigs Fight feature" },
+      { src: "/images/ab2-newchapter.png", caption: "New Chapter Unlocked" },
+      { src: "/images/ab2-bonus.png", caption: "Bonus Level offer" },
+      { src: "/images/ab2-skipads.png", caption: "Skip Ads offer" },
+      { src: "/images/ab2-outofbirds.png", caption: "Out of Birds screen" },
+    ],
+    copyright:
+      "©2025 Rovio Entertainment Corporation and Rovio Animation Ltd. All rights reserved.",
   },
   {
+    num: "02",
     id: "top-troops",
     title: "Top Troops!",
     company: "Socialpoint",
     period: "2021 — 2024",
-    tags: ["Feature Design", "Design System", "Prototyping", "Mobile"],
+    role: "UX/UI Designer & UI Developer",
+    tags: ["Feature Design", "Design System", "Unity", "User Research"],
     description:
-      "3 years building a competitive mobile game. Owned the design system, shipped major features end-to-end, and ran constant A/B tests to find what actually works.",
-    highlight: true,
-    detail: {
-      role: "UX/UI Designer & UI Developer",
-      intro:
-        "Three years at Socialpoint designing and building engaging features for Top Troops! — a competitive mobile strategy game. I was deeply involved in both design and implementation, which gave me a rare perspective on what's actually buildable and what performs in production.",
-      responsibilities: [
-        "Designed and implemented new features and game modes with cross-departmental teams",
-        "Conducted user research and UX testing to improve player satisfaction",
-        "Created and maintained a comprehensive design system for UI consistency",
-        "Optimised existing game assets inside Unity — achieving a 50% improvement in loading times",
-        "Built screens directly in the Unity engine to streamline design-to-dev workflows",
-      ],
-      highlights: [
-        "50% loading time improvement through asset optimisation in Unity",
-        "Built and maintained the full design system across 3 years of active development",
-        "Shipped major features including game mode selection, Battle Pass, Clan screens, and event passes",
-      ],
-      screens: [
-        "Game mode selection screen",
-        "Boss battle home screen (Ancient event)",
-        "Battle Pass main screen and offer popup",
-        "Clan main screen",
-        "Event pass screen and offer popup",
-        "Notification screen",
-      ],
-    },
+      "Three years building Top Troops!, a competitive mobile game. I designed the features and built the screens myself in Unity — owning the design system end to end.",
+    hue: 300,
+    hero: "/images/sp-splash.png",
+    did: [
+      "Design and implement new features and game modes with Art and Dev.",
+      "Run user research and UX/UI testing for usability and player satisfaction.",
+      "Build and maintain a full design system for consistency across the game.",
+      "Build screens directly in the Unity engine, streamlining the pipeline.",
+      "Optimize in-game assets in Unity — 50% faster loading times.",
+    ],
+    gallery: [
+      { src: "/images/sp-battle-menu.png", caption: "Gamemode selection" },
+      { src: "/images/sp-ancient-menu.png", caption: '"Ancient" boss battle' },
+      { src: "/images/sp-kingdom-pass.png", caption: "Kingdom Pass" },
+      { src: "/images/sp-event-pass.png", caption: "Event Pass" },
+      { src: "/images/sp-clan.png", caption: "Clan screen" },
+    ],
+    outcomes: [
+      { t: "Design system", d: "Robust, reusable, consistent across the whole game." },
+      { t: "50% faster", d: "Loading times after in-engine asset optimization." },
+      { t: "Designed + built", d: "Screens shipped straight from Figma into Unity." },
+    ],
   },
   {
+    num: "03",
     id: "yego",
     title: "YEGO Urban Mobility",
     company: "YEGO",
     period: "2021",
-    tags: ["UX/UI", "Design System", "Data-Driven", "Mobile"],
+    role: "Sole UX/UI Designer",
+    tags: ["UX/UI", "Design System", "Branding", "Mobile"],
     description:
-      "Redesigned the UX for a shared mobility app as sole designer. Built the design system from scratch, redesigned the full user app, and added a gamification layer.",
-    detail: {
-      role: "UX/UI Designer (sole designer)",
-      intro:
-        "YEGO is a Barcelona-based shared mobility startup. I joined as the only designer and built everything from scratch — design system, app redesign, marketing assets, and a new gamification feature. Fast-paced, high-ownership work.",
-      responsibilities: [
-        "Built a comprehensive design system from scratch for brand consistency",
-        "Completely redesigned the user app — UX and UI — with a focus on clarity and dev efficiency",
-        "Prepared and delivered all design assets for developer handover",
-        "Designed marketing materials that contributed to the visual identity",
-        "Designed 'YEGO Motor Club' — a gamification layer with exclusive rewards and loyalty mechanics",
-      ],
-      highlights: [
-        "Sole designer — full ownership of every design decision",
-        "Delivered a redesigned app, full design system, and gamification feature in one year",
-        "The Motor Club gamification feature was a new product initiative designed from 0",
-      ],
-      screens: [
-        "Full design system",
-        "Main menu and booking panel redesign",
-        "Map style redesign",
-        "YEGO Motor Club reward screens",
-      ],
-    },
+      "The only designer at YEGO, a Barcelona mobility startup. Built the design system from scratch, redesigned the whole user app, and shaped the brand along the way.",
+    hue: 205,
+    hero: "/images/yego-menu.png",
+    did: [
+      "Build YEGO's design system from scratch for brand coherence.",
+      "Completely redesign the user app around UX and dev efficiency.",
+      "Prep design assets and hand off cleanly to developers.",
+      "Design marketing materials and shape the visual identity.",
+      "Launch the YEGO Motor Club — rewards that gamify the experience.",
+    ],
+    gallery: [
+      { src: "/images/yego-design-system.png", caption: "Design system" },
+      { src: "/images/yego-classic-map.png", caption: "Map style redesign" },
+      { src: "/images/yego-mode.png", caption: "Booking flow" },
+      { src: "/images/yego-map.png", caption: "In-app map" },
+    ],
   },
   {
+    num: "04",
+    id: "service-design",
+    title: "Service Design",
+    company: "ExperienceHaus × QMUL",
+    period: "2024",
+    role: "Service Designer",
+    tags: ["Service Design", "Research", "Journey Mapping", "Workshops"],
+    description:
+      "A part-time Service Design course at ExperienceHaus, on a live brief for the Enterprise team at Queen Mary University of London: scale entrepreneurial support for students, grads and researchers — without scaling the team.",
+    hue: 350,
+    signature: "process",
+    did: [],
+    gallery: [
+      { src: "/images/service-competitor.jpg", caption: "Competitor review" },
+      { src: "/images/service-insights.jpg", caption: "Research insights" },
+      { src: "/images/service-persona.jpg", caption: "Student persona" },
+      { src: "/images/service-journey.jpg", caption: "User journey map" },
+      { src: "/images/service-presentation.png", caption: "Final presentation" },
+    ],
+  },
+  {
+    num: "05",
+    id: "project-planet",
+    title: "Project Planet",
+    company: "Side Project",
+    period: "2022 — Now",
+    role: "Solo Designer & Developer",
+    tags: ["Mobile Game", "Unity", "Narrative Design", "Procedural"],
+    description:
+      "A Unity mobile game inspired by Tamagotchi. Players raise a living planet's calm, trust and hope through minigames, steering it through emotional chapters drawn from real life. Built solo, end to end.",
+    hue: 150,
+    signature: "planet",
+    did: [
+      "Conceived and designed the game around emotional well-being.",
+      "Built core mechanics in Unity, using AI tools (Unity Muse) to move fast.",
+      "Designed minigames that build the planet's resource points.",
+      "Wrote a narrative system of emotional chapters from real life.",
+      "Integrated procedural generation for unique, replayable worlds.",
+    ],
+    gallery: [{ src: "/images/planet-features.png", caption: "Procedural worlds & chapter system" }],
+  },
+  {
+    num: "06",
     id: "sayperk",
     title: "Sayperk",
     company: "Startup",
     period: "2022 — 2023",
-    tags: ["Startup", "UX/UI", "Product Strategy", "Branding"],
+    role: "Founder & Designer",
+    tags: ["Startup", "Branding", "UX/UI", "Webflow"],
     description:
-      "A perk management platform for HR teams. Designed the brand, UX, and web interface from scratch — and validated the concept through research with real HR professionals.",
-    detail: {
-      role: "Product Designer & Co-founder",
-      intro:
-        "Sayperk is a perk management and marketplace platform built for HR departments who want to boost employee engagement and reduce turnover. I led design across brand identity, UX, and the web interface — while also doing research, user interviews, and business validation.",
-      responsibilities: [
-        "Conducted research with HR professionals to identify real pain points",
-        "Created the complete brand identity from scratch",
-        "Designed the full web interface and built it in Webflow",
-        "Established partnerships and connections with potential perk providers",
-        "Validated the value proposition through structured interviews",
-      ],
-      highlights: [
-        "Validated the concept directly with HR professionals before building",
-        "Full-stack design ownership: brand, UX, UI, and implementation",
-        "Built and shipped the platform in Webflow",
-        "Demonstrated end-to-end product thinking — from problem to market",
-      ],
-    },
+      "A side-project startup: a perk marketplace that helps HR teams engage remote employees and cut turnover. I did the brand, the UX and the Webflow build — backed by research with HR pros.",
+    hue: 258,
+    hero: "/images/sayperk-landing.png",
+    did: [
+      "Define the value proposition through interviews with HR professionals.",
+      "Design the brand identity — professional, with a modern perks feel.",
+      "Design and build the web interface in Webflow.",
+      "Open a provider network with potential perk partners.",
+    ],
+    gallery: [
+      { src: "/images/sayperk-marketplace.png", caption: "Perk marketplace" },
+      { src: "/images/sayperk-perk.png", caption: "Perk detail" },
+      { src: "/images/sayperk-cta.png", caption: "Promotional banner" },
+    ],
+    notes: ["Undefined problems", "Fast iterations", "Scrappy solutions", "Comfortable with ambiguity"],
   },
   {
-    id: "project-planet",
-    title: "Project Planet",
-    company: "Side Project",
-    period: "2022 — 2023",
-    tags: ["Mobile Game", "Unity", "Product Design", "Indie"],
-    description:
-      "A mobile game built independently. Full product cycle — concept, design, build. A good excuse to use Unity and learn what it actually takes to ship a game solo.",
-    detail: {
-      role: "Designer & Developer",
-      intro:
-        "Project Planet is an indie mobile game I designed and built solo. The goal was simple: go through the full product cycle without a team — concept, design, art, and implementation in Unity. It taught me more about product constraints than any job has.",
-      responsibilities: [
-        "Concept, game design, and mechanics definition",
-        "Full UI/UX design and visual art direction",
-        "Unity development and implementation",
-        "Playtesting, iteration, and polish",
-      ],
-      highlights: [
-        "Solo project — every decision, every pixel, every line of code",
-        "Shipped a working mobile game from scratch using Unity",
-        "Deepened understanding of the full game development pipeline from a designer's perspective",
-      ],
-    },
-  },
-  {
-    id: "service-design",
-    title: "Service Design",
-    company: "Experiencehaus",
-    period: "2023 — 2024",
-    tags: ["Service Design", "Research", "Journey Mapping"],
-    description:
-      "Intensive course solving real service design challenges with ethnographic research, journey mapping, and prototyping. Practical from day one.",
-    detail: {
-      role: "Student",
-      intro:
-        "An intensive service design programme at Experiencehaus in London. The focus was entirely practical — real briefs, real organisations, real constraints. I learned to lead ethnographic research, map complex journeys, and prototype services that actually address root causes, not symptoms.",
-      responsibilities: [
-        "Ethnographic research and field observation",
-        "User interviews and synthesis",
-        "Journey mapping and service blueprinting",
-        "Concept development and service prototyping",
-        "Presenting findings and recommendations to stakeholders",
-      ],
-      highlights: [
-        "Worked on real briefs for real organisations",
-        "Developed a structured approach to ambiguous, systems-level problems",
-        "Strengthened research and facilitation skills that carry into every product project",
-      ],
-    },
-  },
-  {
+    num: "07",
     id: "ui-design",
     title: "UI Design",
-    company: "Freelance",
-    period: "2015 — 2019",
-    tags: ["UI Design", "Illustration", "Figma", "Branding"],
+    company: "Personal Project",
+    period: "Figma · Self-directed",
+    role: "UI Designer",
+    tags: ["UI Design", "Figma", "Prototyping", "Visual"],
     description:
-      "Years of freelance UI and illustration work across industries. Built adaptability, range, and the ability to deliver fast under any brief.",
-    detail: {
-      role: "UX/UI Designer & Illustrator",
-      intro:
-        "Four years of freelance work across a wide range of clients and industries. This is where I built my foundations — learning to understand briefs quickly, deliver on time, and adapt to wildly different visual languages. No two projects were the same.",
-      responsibilities: [
-        "UI design for web and mobile across various industries",
-        "Illustration for editorial, branding, and digital products",
-        "Design system creation for client projects",
-        "Direct client communication and project management",
-      ],
-      highlights: [
-        "Worked with clients across Spain and internationally",
-        "Built strong visual range — from playful illustration to clean UI",
-        "Developed fast, reliable delivery habits under pressure",
-      ],
-    },
+      "A self-directed series of app and web prototypes in Figma — pushing my UI craft across typography, color and interaction. Five concepts, each with its own design problem to solve.",
+    hue: 95,
+    did: [],
+    gallery: [],
   },
   {
+    num: "08",
     id: "sutchis",
     title: "Sutchi's",
     company: "Etsy Store",
-    period: "2019 — 2020",
-    tags: ["Branding", "Illustration", "E-commerce"],
+    period: "2020",
+    role: "Designer & Shop Owner",
+    tags: ["Branding", "Illustration", "E-commerce", "NFC"],
     description:
-      "Built and designed an Etsy store from scratch — illustration, branding, product photos, the whole thing. Running an actual shop teaches you a lot about UX.",
-    detail: {
-      role: "Designer & Owner",
-      intro:
-        "Sutchi's was an Etsy store I created, designed, and ran entirely solo. The whole thing: product illustration, brand identity, packaging design, photography, and the store experience itself. A small project with a big lesson — shipping real products to real customers gives you instant, unfiltered feedback.",
-      responsibilities: [
-        "Product concept and illustration",
-        "Brand identity and visual language",
-        "Packaging and print design",
-        "Product photography",
-        "Etsy store setup, UX, and ongoing management",
-      ],
-      highlights: [
-        "End-to-end ownership of a real commercial product",
-        "Developed a consistent brand from scratch with zero budget",
-        "Real customer feedback loop — faster and more direct than any user test",
-      ],
-    },
+      "During COVID I launched Sutchi's, an Etsy store selling custom Animal Crossing villager cards with NFC tags. Designed in Illustrator, hand-assembled, shipped worldwide. 50 sales that paid the rent.",
+    hue: 45,
+    hero: "/images/cover-sutchis.jpg",
+    did: [
+      "Design the cards in Illustrator — accurate to every villager.",
+      "Embed NFC tags so each card works in-game via scan.",
+      "Print on quality stock, assemble and package by hand.",
+      "Run the store end to end — logistics, shipping, support.",
+    ],
+    gallery: [
+      { src: "/images/sutchis-2.jpg", caption: "Mario card design" },
+      { src: "/images/sutchis-3.jpg", caption: "Coin card design" },
+      { src: "/images/sutchis-1.jpg", caption: "Store cover art" },
+    ],
+    outcomes: [
+      { t: "50 sales", d: "Enough revenue to cover rent through the pandemic." },
+      { t: "End to end", d: "Design, production, packaging, shipping and support." },
+    ],
   },
 ];
 
-export const skills = [
-  "Product Strategy",
-  "User-Centered Design",
-  "Prototyping & Testing",
-  "Cross-Functional Collaboration",
-  "Roadmapping & Prioritization",
-  "A/B Testing & Analytics",
+// UI Design prototypes (gallery archetype)
+export interface Prototype {
+  t: string;
+  s: string;
+  src?: string;
+  b: string[];
+}
+export const uiPrototypes: Prototype[] = [
+  {
+    t: "Music App",
+    s: "Streaming, built for the dark",
+    b: [
+      "Clean, low-light-friendly layout",
+      "Persistent player bar — play, skip, volume",
+      "Browse by genre, artist & playlist",
+    ],
+  },
+  {
+    t: "Easy Calm",
+    s: "A calming oasis in your pocket",
+    src: "/images/ui-easycalm.png",
+    b: [
+      "Soft blues & greens to ease anxiety",
+      '"Calm right now" front and centre',
+      "Categorized course library",
+    ],
+  },
+  {
+    t: "Saletop",
+    s: "Furniture catalog, decluttered",
+    src: "/images/ui-saletop.png",
+    b: [
+      "Large category previews to browse",
+      "Minimalist product cards, no overload",
+      'Bold, contrasting "Add to Cart"',
+    ],
+  },
+  {
+    t: "Home Force",
+    s: "Neumorphism for the home",
+    src: "/images/ui-homeforce.jpg",
+    b: [
+      "Soft neumorphic shadows & highlights",
+      "3D button cues for clear interaction",
+      "Muted palette, minimalist layout",
+    ],
+  },
+  {
+    t: "BREATHE",
+    s: "Meditation, made effortless",
+    src: "/images/ui-breathe.png",
+    b: [
+      "Cool palette grounded in colour psychology",
+      "Tabbed hierarchy, low cognitive load",
+      "Visual previews of each session",
+    ],
+  },
 ];
 
-export const tools = [
+export const tools: { category: string; items: string }[] = [
   { category: "Product Design", items: "Notion, Jira, Productboard" },
   { category: "UX/UI Design", items: "Figma, Sketch, Marvel" },
   { category: "UI Implementation", items: "Unity, Unreal Engine" },
@@ -260,49 +300,14 @@ export const tools = [
   { category: "Web", items: "WordPress, Wix, Webflow" },
 ];
 
-export const experience = [
-  {
-    role: "UX/UI Designer",
-    company: "Rovio",
-    product: "Angry Birds 2",
-    period: "2024 — Now",
-  },
-  {
-    role: "UX/UI Designer",
-    company: "Socialpoint",
-    product: "Top Troops!",
-    period: "2021 — 2024",
-  },
-  {
-    role: "UX/UI Designer",
-    company: "YEGO Urban Mobility",
-    product: "YEGO App",
-    period: "2021",
-  },
-  {
-    role: "UX/UI Designer & Illustrator",
-    company: "Freelancer.com",
-    product: "Various clients",
-    period: "2015 — 2019",
-  },
-];
-
-export const education = [
-  {
-    title: "Service Design",
-    institution: "Experiencehaus",
-    period: "2023 — 2024",
-  },
+export const education: { title: string; institution: string; period: string }[] = [
+  { title: "Service Design", institution: "Experiencehaus", period: "2023 — 2024" },
   {
     title: "Games, 3D & Interactive Environments",
     institution: "ENTI — Universitat de Barcelona",
     period: "2018 — 2020",
   },
-  {
-    title: "Fundamentals of Digital Marketing",
-    institution: "Google",
-    period: "2020",
-  },
+  { title: "Fundamentals of Digital Marketing", institution: "Google", period: "2020" },
   {
     title: "Design & Edition of Multimedia Publications",
     institution: "Salesianos Urnieta",
@@ -314,3 +319,53 @@ export const education = [
     period: "2014 — 2016",
   },
 ];
+
+// Left-rail "Where I've worked" — custom order + short labels + years
+export const timelineOrder = [
+  "angry-birds",
+  "top-troops",
+  "service-design",
+  "project-planet",
+  "yego",
+  "sayperk",
+  "sutchis",
+  "ui-design",
+];
+
+export const timelineShort: Record<string, string> = {
+  "angry-birds": "Angry Birds 2",
+  "top-troops": "Top Troops!",
+  "service-design": "Service Design",
+  "project-planet": "Project Planet",
+  yego: "YEGO",
+  sayperk: "Sayperk",
+  sutchis: "Sutchi's",
+  "ui-design": "UI Design",
+};
+
+export const timelineYear: Record<string, string> = {
+  "angry-birds": "2024 — Now",
+  "top-troops": "2021 — 24",
+  "service-design": "2024",
+  "project-planet": "2022",
+  yego: "2021",
+  sayperk: "2022",
+  sutchis: "2020",
+  "ui-design": "2015",
+};
+
+export interface Accent {
+  accent: string;
+  line: string;
+  soft: string;
+  themeBg: string;
+}
+
+export function accents(hue: number): Accent {
+  return {
+    accent: `oklch(0.80 0.16 ${hue})`,
+    line: `oklch(0.80 0.16 ${hue} / 0.42)`,
+    soft: `oklch(0.80 0.16 ${hue} / 0.13)`,
+    themeBg: `radial-gradient(130% 120% at 70% 6%, oklch(0.30 0.13 ${hue}) 0%, oklch(0.15 0.06 ${hue}) 42%, oklch(0.07 0.022 ${hue}) 100%)`,
+  };
+}
