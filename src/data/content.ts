@@ -213,7 +213,7 @@ export const projects: Project[] = [
     description:
       "During COVID I launched Sutchi's, an Etsy store selling custom Animal Crossing villager cards with NFC tags. Designed in Illustrator, hand-assembled, shipped worldwide. 50 sales that paid the rent.",
     hue: 45,
-    hero: "/images/cover-sutchis.jpg",
+    hero: "/images/sutchis-cover.jpg",
     did: [
       "Design the cards in Illustrator — accurate to every villager.",
       "Embed NFC tags so each card works in-game via scan.",
@@ -242,10 +242,10 @@ export interface Prototype {
 export const uiPrototypes: Prototype[] = [
   {
     t: "Music App",
-    s: "Streaming, built for the dark",
+    s: "Streaming, clean and simple",
     src: "/images/cover-ui-design.png",
     b: [
-      "Clean, low-light-friendly layout",
+      "Clean layout that puts album art first",
       "Persistent player bar — play, skip, volume",
       "Browse by genre, artist & playlist",
     ],
